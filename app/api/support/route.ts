@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 
 export async function POST(req: NextRequest) {
-  const { name, email } = await req.json();
+  const { name, email, message } = await req.json();
 
   const res = await fetch('https://api.resend.com/emails', {
     method: 'POST',
@@ -10,10 +10,10 @@ export async function POST(req: NextRequest) {
       Authorization: `Bearer ${process.env.RESEND_API_KEY}`,
     },
     body: JSON.stringify({
-      from: 'TEDx Kings Square <register@tedxkingssquarewomen.com.ng>',
-      to: ['register@tedxkingssquarewomen.com.ng'],
-      subject: 'New Registration Interest',
-      html: `<p><strong>Name:</strong> ${name}</p><p><strong>Email:</strong> ${email}</p>`,
+      from: 'TEDx Kings Square <support@tedxkingssquarewomen.com.ng>',
+      to: ['support@tedxkingssquarewomen.com.ng'],
+      subject: `Support Message from ${name}`,
+      html: `<p><strong>Name:</strong> ${name}</p><p><strong>Email:</strong> ${email}</p><p><strong>Message:</strong></p><p>${message}</p>`,
     }),
   });
 

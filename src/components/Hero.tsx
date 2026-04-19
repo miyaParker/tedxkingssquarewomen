@@ -128,7 +128,7 @@ export const Hero = () => {
                 <span className="w-6 h-6 bg-ted-red rounded-full flex items-center justify-center text-xs">↗</span>
               </button>
               <a
-                href="#schedule"
+                href="/events"
                 className="border border-white/30 text-white text-sm font-bold px-7 py-4 rounded-full hover:bg-white/10 transition-all pointer-events-auto"
               >
                 View Schedule

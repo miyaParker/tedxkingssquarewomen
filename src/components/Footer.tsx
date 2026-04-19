@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { motion } from 'motion/react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
@@ -113,6 +113,24 @@ export const About = () => {
 export const Footer = () => {
   const footerRef = useRef<HTMLElement>(null);
   const contentRef = useRef<HTMLDivElement>(null);
+  const [subEmail, setSubEmail] = useState('');
+  const [subState, setSubState] = useState<'idle' | 'loading' | 'done' | 'error'>('idle');
+
+  const handleSubscribe = async (e: React.SyntheticEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setSubState('loading');
+    try {
+      const res = await fetch('/api/subscribe', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email: subEmail }),
+      });
+      if (!res.ok) throw new Error();
+      setSubState('done');
+    } catch {
+      setSubState('error');
+    }
+  };
 
   useEffect(() => {
     if (!footerRef.current || !contentRef.current) return;
@@ -180,7 +198,7 @@ export const Footer = () => {
                 {[
                   { label: 'Secure Your Spot', href: '/#register' },
                   { label: 'Event Schedule', href: '/#schedule' },
-                  { label: 'Partnership Enquiry', href: 'mailto:tedxkingssquarewomen@gmail.com', external: true },
+                  { label: 'Partnership Enquiry', href: 'mailto:partnerships@tedxkingssquarewomen.com.ng?subject=Partnership%20Enquiry%20%E2%80%94%20TEDxKings%20Square%20Women%202026', external: true },
                 ].map(link => (
                   <li key={link.label}><a href={link.href} className="text-xs font-bold uppercase tracking-widest hover:text-ted-red transition-colors">{link.label}</a></li>
                 ))}
@@ -192,9 +210,9 @@ export const Footer = () => {
                 {[
                   { label: 'About us', href: '/about' },
                   { label: 'Our Theme', href: '/about#theme' },
-                  { label: 'Become a Speaker', href: '/support#speakers' },
+                  { label: 'Become a Speaker', href: 'mailto:speakers@tedxkingssquarewomen.com.ng?subject=Speaker%20Application%20%E2%80%94%20TEDxKings%20Square%20Women%202026', external: true },
                 ].map(link => (
-                  <li key={link.label}><a href={link.href} className="text-xs font-bold uppercase tracking-widest hover:text-ted-red transition-colors">{link.label}</a></li>
+                  <li key={link.label}><a href={link.href} target={link.external ? '_blank' : undefined} rel={link.external ? 'noopener noreferrer' : undefined} className="text-xs font-bold uppercase tracking-widest hover:text-ted-red transition-colors">{link.label}</a></li>
                 ))}
               </ul>
             </div>
@@ -239,16 +257,28 @@ export const Footer = () => {
 
             <div>
               <h4 className="text-3xl font-black uppercase tracking-tighter mb-8">Newsletters</h4>
-              <form className="flex flex-col sm:flex-row gap-4">
-                <input 
-                  type="email" 
-                  placeholder="yourname@email.com"
-                  className="flex-grow bg-white/5 border border-white/10 rounded-xl px-6 py-4 text-sm focus:outline-none focus:border-ted-red transition-colors"
-                />
-                <button className="cursor-pointer bg-ted-red hover:bg-ted-red/90 text-white font-black uppercase tracking-widest px-8 py-4 rounded-xl transition-all">
-                  Subscribe
-                </button>
-              </form>
+              {subState === 'done' ? (
+                <p className="text-sm text-white/50 font-light">You're subscribed! We'll keep you posted.</p>
+              ) : (
+                <form onSubmit={handleSubscribe} className="flex flex-col sm:flex-row gap-4">
+                  <input
+                    type="email"
+                    required
+                    placeholder="yourname@email.com"
+                    value={subEmail}
+                    onChange={e => setSubEmail(e.target.value)}
+                    className="flex-grow bg-white/5 border border-white/10 rounded-xl px-6 py-4 text-sm focus:outline-none focus:border-ted-red transition-colors"
+                  />
+                  <button
+                    type="submit"
+                    disabled={subState === 'loading'}
+                    className="cursor-pointer bg-ted-red hover:bg-ted-red/90 disabled:opacity-60 text-white font-black uppercase tracking-widest px-8 py-4 rounded-xl transition-all"
+                  >
+                    {subState === 'loading' ? 'Sending…' : 'Subscribe'}
+                  </button>
+                </form>
+              )}
+              {subState === 'error' && <p className="text-xs text-ted-red mt-2">Something went wrong. Please try again.</p>}
             </div>
           </div>
 

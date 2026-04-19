@@ -172,6 +172,8 @@ export const SupportPage = () => {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
   const [formData, setFormData] = useState({ name: '', email: '', message: '' });
   const [sent, setSent] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
   const active = FAQ_CATEGORIES.find(c => c.id === activeCategory)!;
 
@@ -180,9 +182,23 @@ export const SupportPage = () => {
     setOpenIndex(null);
   };
 
-  const handleSubmit = (e: React.SyntheticEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.SyntheticEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setSent(true);
+    setLoading(true);
+    setError(null);
+    try {
+      const res = await fetch('/api/support', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData),
+      });
+      if (!res.ok) throw new Error('Failed to send');
+      setSent(true);
+    } catch {
+      setError('Something went wrong. Please try again.');
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -353,15 +369,19 @@ export const SupportPage = () => {
                     />
                   </div>
                 </div>
+                {error && <p className="text-center text-xs text-white font-medium pt-4">{error}</p>}
                 <div className="flex justify-center pt-6">
                   <button
                     type="submit"
-                    className="cursor-pointer bg-obsidian text-white font-black uppercase tracking-widest px-8 py-4 rounded-full hover:bg-white hover:text-ted-red transition-all duration-300 text-sm flex items-center gap-3"
+                    disabled={loading}
+                    className="cursor-pointer bg-obsidian text-white font-black uppercase tracking-widest px-8 py-4 rounded-full hover:bg-white hover:text-ted-red disabled:opacity-60 transition-all duration-300 text-sm flex items-center gap-3"
                   >
-                    Send Message
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3">
-                      <path d="M7 17L17 7M17 7H7M17 7V17" />
-                    </svg>
+                    {loading ? 'Sending…' : 'Send Message'}
+                    {!loading && (
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3">
+                        <path d="M7 17L17 7M17 7H7M17 7V17" />
+                      </svg>
+                    )}
                   </button>
                 </div>
               </form>

@@ -476,7 +476,7 @@ export const AboutPage = () => {
           Help bring bold ideas to life. Whether you're a brand, organisation, or individual — there's a place for you in this movement.
         </p>
         <a
-          href="mailto:tedxkingssquarewomen@gmail.com"
+          href="mailto:partnerships@tedxkingssquarewomen.com.ng?subject=Partnership%20Enquiry%20%E2%80%94%20TEDxKings%20Square%20Women%202026"
           className="inline-flex group bg-white text-ted-red px-10 py-5 rounded-full text-sm md:text-lg font-black uppercase tracking-widest hover:bg-obsidian hover:text-white transition-all duration-500 shadow-2xl items-center gap-4"
         >
           Get in Touch

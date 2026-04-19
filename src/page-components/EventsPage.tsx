@@ -31,7 +31,7 @@ const Badge = () => (
 
 const VirtualEventCard = () => (
   <div className="rounded-3xl border border-white/10 overflow-hidden">
-    <div className="p-10 md:p-14 flex flex-col md:flex-row md:items-center md:justify-between gap-10">
+    <div className="p-10 md:p-14 flex flex-col lg:flex-row lg:items-center lg:justify-between gap-10">
       <div>
         <span className="inline-flex items-center gap-1.5 bg-ted-red/20 text-ted-red text-[10px] font-bold uppercase tracking-[0.3em] px-3 py-1.5 rounded-full mb-6">
           <span className="w-1.5 h-1.5 rounded-full bg-ted-red animate-pulse" />
@@ -222,14 +222,14 @@ export const EventsPage = () => {
         </div>
 
         {/* Red banner strip */}
-        <div ref={bannerRef} className="relative z-10 bg-ted-red px-6 md:px-12 py-8 flex flex-col md:flex-row md:items-center md:justify-between gap-6">
+        <div ref={bannerRef} className="relative z-10 bg-ted-red px-6 md:px-12 py-8 flex flex-col lg:flex-row md:items-center md:justify-between gap-6">
           <div>
             <p className="text-[10px] font-bold uppercase tracking-[0.4em] text-white/60 mb-1">The Official Event</p>
             <h2 className="text-xl md:text-4xl font-black uppercase tracking-tighter text-white leading-none">
-              TEDxKings Square Women 2026
+              TED<span className="lowercase">x</span>Kings Square Women 2026
             </h2>
           </div>
-          <div className="flex flex-col md:flex-row md:items-center gap-4 md:gap-6">
+          <div className="flex flex-col md:flex-row md:items-center gap-4 lg:gap-6">
             <div className="flex items-center gap-6">
               <div className="text-white/70">
                 <p className="font-bold text-white uppercase tracking-widest text-[10px] mb-1">When</p>

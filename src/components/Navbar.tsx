@@ -91,7 +91,7 @@ export const Navbar = ({ onRegister }: { onRegister?: () => void }) => {
   }, []);
 
   useEffect(() => {
-    const onResize = () => setIsMobile(window.innerWidth < 768);
+    const onResize = () => setIsMobile(window.innerWidth < 1024);
     window.addEventListener('resize', onResize, { passive: true });
     return () => window.removeEventListener('resize', onResize);
   }, []);
@@ -169,13 +169,13 @@ export const Navbar = ({ onRegister }: { onRegister?: () => void }) => {
                 animate={{ y: isMobile ? 12 : 32, opacity: 1 }}
                 exit={{ y: -60, opacity: 0 }}
                 transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
-                className="pointer-events-auto relative flex items-center justify-between w-[92vw] md:w-[50vw] px-5 md:px-10 py-4 rounded-full bg-obsidian/80 backdrop-blur-md border border-white/10"
+                className="pointer-events-auto relative flex items-center justify-between w-[92vw] lg:w-[50vw] px-5 lg:px-10 py-4 rounded-full bg-obsidian/80 backdrop-blur-md border border-white/10"
               >
                 <a href="/" className="relative flex-shrink-0 block">
                   <img src="/logo.png" alt="TEDxKings Square Women" className="h-7 w-auto brightness-0 invert" />
                 </a>
 
-                <div className="hidden md:flex items-center gap-1">
+                <div className="hidden lg:flex items-center gap-1">
                   {NAV_LINKS.map((item) => (
                     <a
                       key={item.label}
@@ -195,7 +195,7 @@ export const Navbar = ({ onRegister }: { onRegister?: () => void }) => {
 
                 <button
                   onClick={() => setMobileOpen(true)}
-                  className="md:hidden text-white p-1"
+                  className="lg:hidden text-white p-1"
                   aria-label="Open menu"
                 >
                   <Menu className="w-5 h-5" />

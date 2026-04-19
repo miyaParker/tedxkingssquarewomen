@@ -40,7 +40,7 @@ export const Hero = () => {
     });
 
     // Phase 1: text scales up, video shows through letters
-    const zoomScale = window.innerWidth < 768 ? 180 : 50;
+    const zoomScale = window.innerWidth < 768 ? 180 : 100;
     tl.to(textRef.current, { scale: zoomScale, duration: 1, ease: 'power2.inOut' }, 0);
 
     // Blur the video as soon as text fills the screen (no mask fade — fading exposes black bg)
@@ -82,6 +82,8 @@ export const Hero = () => {
           ref={videoElementRef}
           className="w-full h-full object-cover"
         >
+          <source src="/mobile.mp4" type="video/mp4" media="(max-width: 520px)" />
+          <source src="/tablet.mp4" type="video/mp4" media="(max-width: 768px)" />
           <source src="/hero.mp4" type="video/mp4" />
         </video>
       </div>

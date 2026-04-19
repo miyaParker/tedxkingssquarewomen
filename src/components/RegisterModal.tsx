@@ -1,6 +1,7 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
+import { createPortal } from 'react-dom';
 import { ArrowRight, X } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
 
@@ -9,6 +10,8 @@ export const RegisterModal = ({ onClose }: { onClose: () => void }) => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [form, setForm] = useState({ name: '', email: '' });
+  const [mounted, setMounted] = useState(false);
+  useEffect(() => { setMounted(true); }, []);
 
   const handleSubmit = async (e: React.SyntheticEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -29,7 +32,9 @@ export const RegisterModal = ({ onClose }: { onClose: () => void }) => {
     }
   };
 
-  return (
+  if (!mounted) return null;
+
+  return createPortal(
     <motion.div
       className="fixed inset-0 z-50 flex items-center justify-center p-6"
       initial={{ opacity: 0 }}
@@ -132,6 +137,7 @@ export const RegisterModal = ({ onClose }: { onClose: () => void }) => {
           )}
         </AnimatePresence>
       </motion.div>
-    </motion.div>
+    </motion.div>,
+    document.body
   );
 };

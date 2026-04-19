@@ -1,9 +1,10 @@
 'use client';
 
 import React, { useEffect, useRef, useState } from 'react';
-import { motion } from 'motion/react';
+import { AnimatePresence } from 'motion/react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { RegisterModal } from './RegisterModal';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -113,6 +114,7 @@ export const About = () => {
 export const Footer = () => {
   const footerRef = useRef<HTMLElement>(null);
   const contentRef = useRef<HTMLDivElement>(null);
+  const [showModal, setShowModal] = useState(false);
   const [subEmail, setSubEmail] = useState('');
   const [subState, setSubState] = useState<'idle' | 'loading' | 'done' | 'error'>('idle');
 
@@ -151,6 +153,7 @@ export const Footer = () => {
   }, []);
 
   return (
+    <>
     <footer ref={footerRef} className="bg-obsidian text-white pt-20 pb-10 px-6 md:px-12 relative overflow-hidden z-10">
       <div ref={contentRef} className="relative">
         {/* Background Glows */}
@@ -160,7 +163,7 @@ export const Footer = () => {
         <div className="max-w-7xl mx-auto relative z-10">
           {/* Top Social Links */}
           <div className="border-b border-white/10 mb-20">
-            <div className="flex flex-col md:grid md:grid-cols-4">
+            <div className="flex flex-col md:grid md:grid-cols-2 lg:grid-cols-4">
               {[
                 { name: 'Instagram', url: 'https://www.instagram.com/tedxkingssquarewomen?igsh=dmhpYnkwM3NhZ2dh&utm_source=qr' },
                 { name: 'WhatsApp', url: 'https://chat.whatsapp.com/BpjkeQJOVHK7D3zacrlVGw' },
@@ -171,9 +174,9 @@ export const Footer = () => {
                   href={social.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="group flex justify-between items-center px-0 py-5 md:p-8 border-b md:border-b-0 md:border-r border-white/10 hover:bg-white/5 md:hover:bg-white/5 transition-colors"
+                  className={`group flex justify-between items-center px-0 py-5 md:p-8 border-b md:border-y lg:border-y-0 md:border-r ${social.name=="WhatsApp"? "md:border-r-0 lg:border-r" : ""} border-white/10 hover:bg-white/5 transition-colors`}
                 >
-                  <span className="text-xl md:text-3xl font-black uppercase tracking-tighter">{social.name}</span>
+                  <span className="text-xl md:text-2xl lg:text-3xl font-black uppercase tracking-tighter">{social.name}</span>
                   <svg
                     width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3"
                     className="group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform flex-shrink-0"
@@ -191,16 +194,20 @@ export const Footer = () => {
           </div>
 
           {/* Link Columns */}
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-12 mb-32">
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-12 mb-32">
             <div>
               <h5 className="text-white/40 text-[10px] font-bold uppercase tracking-[0.3em] mb-8">Event</h5>
               <ul className="space-y-4">
+                <li>
+                  <button onClick={() => setShowModal(true)} className="cursor-pointer text-xs font-bold uppercase tracking-widest hover:text-ted-red transition-colors">
+                    Secure Your Spot
+                  </button>
+                </li>
                 {[
-                  { label: 'Secure Your Spot', href: '/#register' },
                   { label: 'Event Schedule', href: '/#schedule' },
-                  { label: 'Partnership Enquiry', href: 'mailto:partnerships@tedxkingssquarewomen.com.ng?subject=Partnership%20Enquiry%20%E2%80%94%20TEDxKings%20Square%20Women%202026', external: true },
+                  { label: 'Partnership Enquiry', href: 'mailto:tedxkingssquarewomen@gmail.com?subject=Partnership%20Enquiry%20%E2%80%94%20TEDxKings%20Square%20Women%202026', external: true },
                 ].map(link => (
-                  <li key={link.label}><a href={link.href} className="text-xs font-bold uppercase tracking-widest hover:text-ted-red transition-colors">{link.label}</a></li>
+                  <li key={link.label}><a href={link.href} target={link.external ? '_blank' : undefined} rel={link.external ? 'noopener noreferrer' : undefined} className="text-xs font-bold uppercase tracking-widest hover:text-ted-red transition-colors">{link.label}</a></li>
                 ))}
               </ul>
             </div>
@@ -243,14 +250,14 @@ export const Footer = () => {
           </div>
 
           {/* Brand and Newsletter */}
-          <div className="grid md:grid-cols-2 gap-20 items-end">
+          <div className="grid md:grid-cols-2 gap-12 md:gap-16 items-end">
             <div>
               <a href="/" className="relative w-fit mb-8 block">
                 <img src="/logo.png" alt="TEDxKings Square Women" className="h-10 w-auto brightness-0 invert" />
                 <span className="absolute top-full left-0 text-[9px] text-white/40 uppercase tracking-widest whitespace-nowrap">x = independently organized TED event</span>
               </a>
               <p className="text-white/40 text-sm leading-relaxed max-w-sm">
-                Whether you're a visionary thinker or a curious learner — TEDxKings Square Women helps you 
+                Whether you're a visionary thinker or a curious learner — TEDxKings Square Women helps you
                 connect with ideas that spark change through live events and deep interaction.
               </p>
             </div>
@@ -260,19 +267,19 @@ export const Footer = () => {
               {subState === 'done' ? (
                 <p className="text-sm text-white/50 font-light">You're subscribed! We'll keep you posted.</p>
               ) : (
-                <form onSubmit={handleSubscribe} className="flex flex-col sm:flex-row gap-4">
+                <form onSubmit={handleSubscribe} className="flex flex-col lg:flex-row gap-3">
                   <input
                     type="email"
                     required
                     placeholder="yourname@email.com"
                     value={subEmail}
                     onChange={e => setSubEmail(e.target.value)}
-                    className="flex-grow bg-white/5 border border-white/10 rounded-xl px-6 py-4 text-sm focus:outline-none focus:border-ted-red transition-colors"
+                    className="flex-grow bg-white/5 border border-white/10 rounded-xl px-6 py-4 text-sm focus:outline-none focus:border-ted-red transition-colors min-w-0"
                   />
                   <button
                     type="submit"
                     disabled={subState === 'loading'}
-                    className="cursor-pointer bg-ted-red hover:bg-ted-red/90 disabled:opacity-60 text-white font-black uppercase tracking-widest px-8 py-4 rounded-xl transition-all"
+                    className="cursor-pointer bg-ted-red hover:bg-ted-red/90 disabled:opacity-60 text-white font-black uppercase tracking-widest px-8 py-4 rounded-xl transition-all whitespace-nowrap flex-shrink-0"
                   >
                     {subState === 'loading' ? 'Sending…' : 'Subscribe'}
                   </button>
@@ -295,5 +302,10 @@ export const Footer = () => {
         </div>
       </div>
     </footer>
+
+    <AnimatePresence>
+      {showModal && <RegisterModal onClose={() => setShowModal(false)} />}
+    </AnimatePresence>
+    </>
   );
 };

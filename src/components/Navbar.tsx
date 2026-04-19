@@ -79,6 +79,7 @@ export const Navbar = ({ onRegister }: { onRegister?: () => void }) => {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
+  const [bannerVisible, setBannerVisible] = useState(true);
 
   useEffect(() => {
     const onScroll = () => {
@@ -105,16 +106,19 @@ export const Navbar = ({ onRegister }: { onRegister?: () => void }) => {
     <>
       <div className="fixed top-0 left-0 w-full z-50 flex flex-col pointer-events-none">
         {/* Announcement bar */}
-        <a
-          href="/events"
-          className="pointer-events-auto w-full bg-ted-red text-white text-center text-[11px] font-bold uppercase tracking-[0.3em] py-2 px-4 hover:bg-white hover:text-ted-red transition-colors duration-300 flex items-center justify-center gap-3"
-        >
-          <span className="w-1.5 h-1.5 rounded-full bg-white animate-pulse flex-shrink-0" />
-          Virtual Pre-Event · May 2026 · Free &nbsp;—&nbsp; Register Now
-          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3">
-            <path d="M5 12h14M12 5l7 7-7 7" />
-          </svg>
-        </a>
+        {bannerVisible && (
+          <div className="pointer-events-auto w-full bg-ted-red text-white text-[11px] font-bold uppercase tracking-[0.3em] py-2 px-4 flex items-center justify-center gap-3 relative">
+            <span className="w-1.5 h-1.5 rounded-full bg-white animate-pulse flex-shrink-0" />
+            Virtual Pre-Event · May 2026 · Free &nbsp;—&nbsp; Link Coming Soon
+            <button
+              onClick={() => setBannerVisible(false)}
+              className="cursor-pointer absolute right-4 top-1/2 -translate-y-1/2 text-white/60 hover:text-white transition-colors"
+              aria-label="Close banner"
+            >
+              <X size={14} />
+            </button>
+          </div>
+        )}
 
         <div className="flex justify-center pointer-events-none w-full">
           <AnimatePresence mode="wait">

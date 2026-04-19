@@ -258,8 +258,8 @@ export const Footer = () => {
               © 2026 TEDxKings Square Women. Operated under license from TED.
             </p>
             <div className="flex gap-8">
-              <a href="#" className="text-[10px] text-white/20 uppercase tracking-widest hover:text-white transition-colors">Privacy Policy</a>
-              <a href="#" className="text-[10px] text-white/20 uppercase tracking-widest hover:text-white transition-colors">Terms of Service</a>
+              <a href="/privacy" className="text-[10px] text-white/20 uppercase tracking-widest hover:text-white transition-colors">Privacy Policy</a>
+              <a href="/terms" className="text-[10px] text-white/20 uppercase tracking-widest hover:text-white transition-colors">Terms of Service</a>
             </div>
           </div>
         </div>

@@ -288,50 +288,45 @@ export const EventsPage = () => {
 
       {/* What to expect */}
       <section className="py-24 px-6 md:px-12 bg-white border-t border-obsidian/10">
-        <div className="max-w-5xl mx-auto grid md:grid-cols-2 gap-24 items-start">
-          <div>
-            <h2 className="text-xs font-bold text-ted-red uppercase tracking-[0.5em] mb-4">On the Day</h2>
-            <h3 className="text-5xl font-black tracking-tighter uppercase leading-none text-obsidian mb-8">
-              What to Expect
-            </h3>
-            <div className="space-y-6">
-              {[
-                { time: '11:00 AM', event: 'Opening Speech' },
-                { time: '11:10 AM', event: 'Talks & Performances' },
-                { time: '1:15 PM', event: 'The Square — Panel Session' },
-                { time: '2:00 PM', event: 'Closing Performance' },
-                { time: '2:30 PM', event: 'Closing Remarks & The Unveiling' },
-              ].map((item, i) => (
-                <div key={i} className="flex gap-6 items-start group">
-                  <span className="text-xs font-bold uppercase tracking-widest text-obsidian/30 pt-1 w-20 flex-shrink-0">{item.time}</span>
-                  <div className="flex-1 border-t border-obsidian/10 pt-4">
-                    <p className="text-lg font-black uppercase tracking-tight text-obsidian group-hover:text-ted-red transition-colors">{item.event}</p>
-                  </div>
-                </div>
-              ))}
+        <div className="max-w-5xl mx-auto">
+          <div className="flex items-end justify-between mb-12">
+            <div>
+              <h2 className="text-xs font-bold text-ted-red uppercase tracking-[0.5em] mb-4">On the Day</h2>
+              <h3 className="text-5xl font-black tracking-tighter uppercase leading-none text-obsidian">
+                What to Expect
+              </h3>
             </div>
           </div>
-
-          <div className="space-y-6">
-            <h2 className="text-xs font-bold text-ted-red uppercase tracking-[0.5em] mb-4">Who's it for</h2>
-            <h3 className="text-5xl font-black tracking-tighter uppercase leading-none text-obsidian mb-8">
-              This Event Is For You
-            </h3>
+          <div className="space-y-0">
             {[
-              { label: 'Women of all backgrounds', desc: 'From students to CEOs — every woman belongs here.' },
-              { label: 'Allies & Champions', desc: 'Men and allies who believe in women\'s progress.' },
-              { label: 'Emerging Leaders', desc: 'Youth with bold ideas and bigger dreams.' },
-              { label: 'Curious Minds', desc: 'Anyone hungry for ideas that spark real change.' },
+              { time: '11:00 AM', event: 'Opening Speech' },
+              { time: '11:10 AM', event: 'Talks & Performances' },
+              { time: '1:15 PM', event: 'The Square — Panel Session' },
+              { time: '2:00 PM', event: 'Closing Performance' },
+              { time: '2:30 PM', event: 'Closing Remarks & The Unveiling' },
             ].map((item, i) => (
-              <div key={i} className="flex gap-4 p-5 rounded-2xl border border-obsidian/10 hover:border-ted-red/30 transition-colors group">
-                <div className="w-2 h-2 rounded-full bg-ted-red flex-shrink-0 mt-2" />
-                <div>
-                  <p className="text-sm font-black uppercase tracking-tight text-obsidian mb-1">{item.label}</p>
-                  <p className="text-sm text-obsidian/50 font-light">{item.desc}</p>
-                </div>
+              <div key={i} className="flex gap-6 md:gap-12 items-center group border-t border-obsidian/10 py-6">
+                <span className="text-xs font-bold uppercase tracking-widest text-obsidian/30 w-20 md:w-28 flex-shrink-0">{item.time}</span>
+                <p className="text-xl md:text-3xl font-black uppercase tracking-tight text-obsidian group-hover:text-ted-red transition-colors flex-1">{item.event}</p>
+                <span className="w-2 h-2 rounded-full bg-obsidian/10 group-hover:bg-ted-red flex-shrink-0 transition-colors" />
               </div>
             ))}
+            <div className="border-t border-obsidian/10" />
           </div>
+        </div>
+      </section>
+
+      {/* Who's it for — marquee banner */}
+      <section className="bg-obsidian overflow-hidden border-t border-b border-white/20 py-6">
+        <div className="flex animate-marquee w-max items-center gap-10">
+          {[...Array(2)].flatMap((_, ai) =>
+            ['Women of all backgrounds', 'Allies & Champions', 'Emerging Leaders', 'Curious Minds'].flatMap((label, i) => [
+              <span key={`${ai}-${i}`} className="text-2xl md:text-4xl font-black uppercase tracking-tighter text-white whitespace-nowrap flex-shrink-0">
+                {label}
+              </span>,
+              <span key={`${ai}-${i}-dot`} className="w-3 h-3 rounded-full bg-white/40 flex-shrink-0" />,
+            ])
+          )}
         </div>
       </section>
 

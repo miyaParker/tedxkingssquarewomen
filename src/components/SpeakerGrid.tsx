@@ -10,25 +10,25 @@ const SPEAKERS = [
   {
     name: "Dr. Osasere Omoruyi",
     role: "Cultural Historian",
-    image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=1000&auto=format&fit=crop",
+    image: "https://images.unsplash.com/photo-1561406636-b80293969660?q=80&w=987&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     topic: "The Bronze Legacy in a Digital Age"
   },
   {
     name: "Efeosa Ighodaro",
     role: "Tech Entrepreneur",
-    image: "https://images.unsplash.com/photo-1531123897727-8f129e1688ce?q=80&w=1000&auto=format&fit=crop",
+    image: "https://images.unsplash.com/photo-1614709445081-23465e205471?q=80&w=987&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     topic: "Fintech for the Next Billion"
   },
   {
     name: "Adesuwa Etomi",
     role: "Creative Director",
-    image: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=1000&auto=format&fit=crop",
+    image: "https://images.unsplash.com/photo-1596921580008-6a5533accf32?q=80&w=987&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     topic: "Storytelling as a Tool for Change"
   },
   {
     name: "Prof. Victor Uwaifo Jr.",
     role: "Musicologist",
-    image: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=1000&auto=format&fit=crop",
+    image: "https://images.unsplash.com/photo-1656313836297-0cd072f08f43?q=80&w=987&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     topic: "The Evolution of Benin Sound"
   }
 ];

@@ -3,7 +3,7 @@
 import { useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { Menu, X } from 'lucide-react';
-
+import Link from 'next/link';
 const NAV_LINKS = [
   { label: 'About', href: '/about' },
   { label: 'Events', href: '/events' },
@@ -109,7 +109,9 @@ export const Navbar = ({ onRegister }: { onRegister?: () => void }) => {
         {bannerVisible && (
           <div className="pointer-events-auto w-full bg-ted-red text-white text-[11px] font-bold uppercase tracking-[0.3em] py-2 px-4 flex items-center justify-center gap-3 relative">
             <span className="w-1.5 h-1.5 rounded-full bg-white animate-pulse flex-shrink-0" />
-            Virtual Pre-Event · May 2026 · Free &nbsp;—&nbsp; Link Coming Soon
+            <Link href="https://calendar.app.google/iSrZBZLzkA7nWprD8" target="_blank" rel="noopener noreferrer">
+              Virtual Pre-Event · May 2026 · Free &nbsp;—&nbsp; Add to calendar
+            </Link>
             <button
               onClick={() => setBannerVisible(false)}
               className="cursor-pointer absolute right-4 top-1/2 -translate-y-1/2 text-white/60 hover:text-white transition-colors"

@@ -330,6 +330,49 @@ export const EventsPage = () => {
         </div>
       </section>
 
+      {/* Why Unscripted */}
+      <section id="theme" className="py-24 px-6 md:px-12 bg-white border-t border-obsidian/10">
+        <div className="max-w-5xl mx-auto">
+          <h2 className="text-xs font-bold text-ted-red uppercase tracking-[0.5em] mb-4">The Theme</h2>
+          <h3 className="text-5xl md:text-7xl font-black tracking-tighter uppercase leading-none text-obsidian mb-12">
+            Why<br />Unscripted?
+          </h3>
+
+          <div className="grid md:grid-cols-2 gap-16 items-start">
+            <div>
+              <p className="text-base md:text-lg font-light leading-relaxed text-obsidian/70 mb-6">
+                The theme <span className="font-semibold text-obsidian">"Unscripted"</span> symbolizes women everywhere in their diversity and resilience, authoring change. Unscripted calls women to boldly imagine the future in their own way — celebrating how far women's contributions have come, while driving the belief that the future is unscripted.
+              </p>
+              <p className="text-base md:text-lg font-light leading-relaxed text-obsidian/70">
+                Women are able to write, design, and invent the possibilities they want across every sphere. Unscripted is a bold call for women to advance and create new possibilities in spaces where women's voices and visions are essential.
+              </p>
+            </div>
+
+            <div>
+              <p className="text-[10px] font-bold uppercase tracking-[0.4em] text-obsidian/40 mb-6">Potential Talk Directions</p>
+              <div className="space-y-0">
+                {[
+                  'Breaking barriers in traditionally male-dominated fields.',
+                  'Reimagining women in leadership, community, or business for tomorrow.',
+                  'Creative expressions of identity, culture, and storytelling.',
+                  'Personal journeys that reveal courage, innovation, and reinvention.',
+                ].map((item, i) => (
+                  <div key={i} className="flex gap-5 items-start border-t border-obsidian/10 py-5 group">
+                    <span className="text-ted-red font-black text-sm flex-shrink-0 pt-0.5">0{i + 1}</span>
+                    <p className="text-sm font-medium text-obsidian/70 leading-relaxed group-hover:text-obsidian transition-colors">{item}</p>
+                  </div>
+                ))}
+                <div className="border-t border-obsidian/10 pt-6">
+                  <p className="text-xs text-obsidian/40 font-light leading-relaxed italic">
+                    Each talk will align with TEDx values: evidence-based, authentic, non-promotional, and idea-driven.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Photo gallery */}
       <section className="py-24 px-6 md:px-12 bg-obsidian">
         <div className="max-w-5xl mx-auto">

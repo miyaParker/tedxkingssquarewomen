@@ -402,7 +402,7 @@ export const AboutPage = () => {
       </section>
 
       {/* Team */}
-      <section className="py-32 px-6 md:px-12 bg-white border-b border-obsidian/10">
+      {/* <section className="py-32 px-6 md:px-12 bg-white border-b border-obsidian/10">
         <div className="max-w-7xl mx-auto">
           <div className="mb-16">
             <h2 className="text-sm font-bold text-ted-red uppercase tracking-[0.5em] mb-4">The People</h2>
@@ -431,7 +431,7 @@ export const AboutPage = () => {
             ))}
           </div>
         </div>
-      </section>
+      </section> */}
 
       {/* FAQs */}
       <section className="py-32 px-6 md:px-12 bg-obsidian border-t border-white/10">

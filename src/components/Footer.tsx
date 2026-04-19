@@ -216,8 +216,8 @@ export const Footer = () => {
               <ul className="space-y-4">
                 {[
                   { label: 'About us', href: '/about' },
-                  { label: 'Our Theme', href: '/about#theme' },
-                  { label: 'Become a Speaker', href: 'mailto:speakers@tedxkingssquarewomen.com.ng?subject=Speaker%20Application%20%E2%80%94%20TEDxKings%20Square%20Women%202026', external: true },
+                  { label: 'Our Theme', href: '/events#theme' },
+                  { label: 'Become a Speaker', href: 'https://forms.gle/fksgVp8Xno6eGsu69', external: true },
                 ].map(link => (
                   <li key={link.label}><a href={link.href} target={link.external ? '_blank' : undefined} rel={link.external ? 'noopener noreferrer' : undefined} className="text-xs font-bold uppercase tracking-widest hover:text-ted-red transition-colors">{link.label}</a></li>
                 ))}

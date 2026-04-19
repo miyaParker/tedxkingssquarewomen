@@ -113,7 +113,7 @@ export const Schedule = () => {
           {/* Floating image */}
           <div ref={imageRef} className="hidden md:block sticky top-32">
             <img
-              src="https://images.unsplash.com/photo-1540575467063-178a50c2df87?q=80&w=800&auto=format&fit=crop"
+              src="/events.jpg"
               alt="Event"
               className="w-full aspect-[3/4] object-cover rounded-2xl brightness-75"
               referrerPolicy="no-referrer"

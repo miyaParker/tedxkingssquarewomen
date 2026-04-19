@@ -1,3 +1,5 @@
+'use client';
+
 import React, { useState } from 'react';
 import { ArrowRight, X } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
@@ -13,7 +15,7 @@ export const RegisterModal = ({ onClose }: { onClose: () => void }) => {
     setLoading(true);
     setError(null);
     try {
-      const res = await fetch('/.netlify/functions/register', {
+      const res = await fetch('/api/register', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ name: form.name, email: form.email }),

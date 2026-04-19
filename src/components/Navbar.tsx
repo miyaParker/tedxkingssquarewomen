@@ -1,13 +1,12 @@
-import React, { useEffect, useState } from 'react';
+'use client';
+
+import { useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { Menu, X } from 'lucide-react';
 
 const NAV_LINKS = [
-  { label: 'Speakers', href: '/#speakers' },
-  { label: 'Schedule', href: '/#schedule' },
-  { label: 'Events', href: '/events' },
   { label: 'About', href: '/about' },
-  { label: 'Partners', href: '/#partners' },
+  { label: 'Events', href: '/events' },
   { label: 'Support', href: '/support' },
 ];
 
@@ -79,7 +78,7 @@ const MobileMenu = ({ onClose, onRegister }: { onClose: () => void; onRegister: 
 export const Navbar = ({ onRegister }: { onRegister?: () => void }) => {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
-  const [isMobile, setIsMobile] = useState(() => window.innerWidth < 768);
+  const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
     const onScroll = () => {

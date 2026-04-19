@@ -4,6 +4,7 @@ import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { Navbar } from '../components/Navbar';
 import { Footer } from '../components/Footer';
+import { RegisterModal } from '../components/RegisterModal';
 
 const SocialLinks = () => (
   <div className="flex flex-wrap gap-4 mt-3">
@@ -168,6 +169,7 @@ const FAQItem = ({ q, a, open, onToggle }: { q: string; a: React.ReactNode; open
 };
 
 export const SupportPage = () => {
+  const [showModal, setShowModal] = useState(false);
   const [activeCategory, setActiveCategory] = useState('general');
   const [openIndex, setOpenIndex] = useState<number | null>(null);
   const [formData, setFormData] = useState({ name: '', email: '', message: '' });
@@ -209,7 +211,7 @@ export const SupportPage = () => {
       exit={{ x: '-100%', opacity: 0 }}
       transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
     >
-      <Navbar />
+      <Navbar onRegister={() => setShowModal(true)} />
 
       {/* Hero */}
       <section className="pt-48 pb-24 px-6 md:px-12 border-b border-white/10 text-center">
@@ -391,6 +393,10 @@ export const SupportPage = () => {
       </section>
 
       <Footer />
+
+      <AnimatePresence>
+        {showModal && <RegisterModal onClose={() => setShowModal(false)} />}
+      </AnimatePresence>
     </motion.div>
   );
 };

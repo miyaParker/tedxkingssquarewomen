@@ -6,6 +6,7 @@ import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { Navbar } from '../components/Navbar';
 import { Footer } from '../components/Footer';
+import { RegisterModal } from '../components/RegisterModal';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -105,6 +106,7 @@ const FAQItem = ({ q, a, open, onToggle }: { q: string; a: React.ReactNode; open
 };
 
 export const AboutPage = () => {
+  const [showModal, setShowModal] = useState(false);
   const [openFaq, setOpenFaq] = useState<number | null>(null);
   const [activeObj, setActiveObj] = useState<number | null>(0);
   const hPinRef = useRef<HTMLDivElement>(null);
@@ -210,7 +212,7 @@ export const AboutPage = () => {
       exit={{ x: '-100%', opacity: 0 }}
       transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
     >
-      <Navbar />
+      <Navbar onRegister={() => setShowModal(true)} />
 
       {/* Hero */}
       <section className="h-screen flex items-end px-6 md:px-12 pb-24 bg-obsidian border-b border-white/10">
@@ -488,6 +490,9 @@ export const AboutPage = () => {
 
       <Footer />
 
+      <AnimatePresence>
+        {showModal && <RegisterModal onClose={() => setShowModal(false)} />}
+      </AnimatePresence>
     </motion.div>
   );
 };

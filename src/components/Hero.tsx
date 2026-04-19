@@ -78,6 +78,7 @@ export const Hero = () => {
           muted
           loop
           playsInline
+          poster="/hero.png"
           ref={videoElementRef}
           className="w-full h-full object-cover"
         >

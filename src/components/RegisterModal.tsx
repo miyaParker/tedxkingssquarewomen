@@ -44,7 +44,7 @@ export const RegisterModal = ({ onClose }: { onClose: () => void }) => {
         exit={{ y: 40, opacity: 0 }}
         transition={{ ease: [0.16, 1, 0.3, 1], duration: 0.5 }}
       >
-        <button onClick={onClose} className="absolute top-6 right-6 text-white/40 hover:text-white transition-colors">
+        <button onClick={onClose} className="cursor-pointer absolute top-6 right-6 text-white/40 hover:text-white transition-colors">
           <X size={18} />
         </button>
 
@@ -77,7 +77,7 @@ export const RegisterModal = ({ onClose }: { onClose: () => void }) => {
                 <button
                   type="submit"
                   disabled={loading}
-                  className="w-full bg-ted-red hover:bg-ted-red/90 disabled:opacity-60 text-white font-black uppercase tracking-widest px-8 py-4 rounded-xl transition-all text-sm"
+                  className="cursor-pointer w-full bg-ted-red hover:bg-ted-red/90 disabled:opacity-60 text-white font-black uppercase tracking-widest px-8 py-4 rounded-xl transition-all text-sm"
                 >
                   {loading ? 'Sending…' : 'Notify Me'}
                 </button>

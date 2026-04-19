@@ -245,7 +245,7 @@ export const Footer = () => {
                   placeholder="yourname@email.com"
                   className="flex-grow bg-white/5 border border-white/10 rounded-xl px-6 py-4 text-sm focus:outline-none focus:border-ted-red transition-colors"
                 />
-                <button className="bg-ted-red hover:bg-ted-red/90 text-white font-black uppercase tracking-widest px-8 py-4 rounded-xl transition-all">
+                <button className="cursor-pointer bg-ted-red hover:bg-ted-red/90 text-white font-black uppercase tracking-widest px-8 py-4 rounded-xl transition-all">
                   Subscribe
                 </button>
               </form>

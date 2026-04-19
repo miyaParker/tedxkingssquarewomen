@@ -170,12 +170,12 @@ export const AboutPage = () => {
       gsap.set(spans, { clipPath: 'inset(0 0 0 100%)' });
       gsap.to(spans, {
         clipPath: 'inset(0 0 0 0%)',
-        duration: 1,
+        duration: 1.5,
         stagger: 0.12,
         ease: 'power3.out',
         scrollTrigger: {
           trigger: pin,
-          start: () => `top+=${window.innerHeight * 0.4} top`,
+          start: () => `top 45%`,
           once: true,
         },
       });
@@ -313,7 +313,7 @@ export const AboutPage = () => {
             style={{ left: '200vw', transform: 'translate(-50%, -50%)' }}
           >
           <div className="boundary-disk rounded-full bg-obsidian p-3">
-          <svg width="200" height="200" viewBox="0 0 220 220" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <svg className='w-[100px] h-[100px] lg:h-[200px] lg:w-[200px]' width="200" height="200" viewBox="0 0 220 220" fill="none" xmlns="http://www.w3.org/2000/svg">
             <circle cx="110" cy="110" r="106" stroke="white" strokeWidth="0.75" strokeOpacity="0.25"/>
             <circle cx="110" cy="110" r="80"  stroke="white" strokeWidth="0.5"  strokeOpacity="0.15"/>
             <circle cx="110" cy="110" r="54"  stroke="white" strokeWidth="0.5"  strokeOpacity="0.15"/>
@@ -466,7 +466,28 @@ export const AboutPage = () => {
         </div>
       </section>
 
+      {/* Partner CTA */}
+      <section className="py-24 px-6 md:px-12 bg-ted-red text-white text-center">
+        <h2 className="text-xs font-bold uppercase tracking-[0.5em] mb-6 opacity-70">Get Involved</h2>
+        <h3 className="text-6xl md:text-8xl font-black tracking-tighter uppercase leading-none mb-6">
+          Partner <br /><span className="text-obsidian">With Us</span>
+        </h3>
+        <p className="text-white/70 font-light text-lg max-w-xl mx-auto mb-10">
+          Help bring bold ideas to life. Whether you're a brand, organisation, or individual — there's a place for you in this movement.
+        </p>
+        <a
+          href="mailto:tedxkingssquarewomen@gmail.com"
+          className="inline-flex group bg-white text-ted-red px-10 py-5 rounded-full text-sm md:text-lg font-black uppercase tracking-widest hover:bg-obsidian hover:text-white transition-all duration-500 shadow-2xl items-center gap-4"
+        >
+          Get in Touch
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" className="group-hover:translate-x-1 transition-transform">
+            <path d="M5 12h14M12 5l7 7-7 7" />
+          </svg>
+        </a>
+      </section>
+
       <Footer />
+
     </motion.div>
   );
 };

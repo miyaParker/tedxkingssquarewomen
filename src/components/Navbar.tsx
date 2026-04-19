@@ -34,7 +34,7 @@ const MobileMenu = ({ onClose, onRegister }: { onClose: () => void; onRegister: 
         <a href="/" onClick={onClose}>
           <img src="/logo.png" alt="TEDxKings Square Women" className="h-8 w-auto brightness-0 invert" />
         </a>
-        <button onClick={onClose} className="text-white/40 hover:text-white transition-colors p-1">
+        <button onClick={onClose} className="cursor-pointer text-white/40 hover:text-white transition-colors p-1">
           <X size={20} />
         </button>
       </div>
@@ -144,7 +144,7 @@ export const Navbar = ({ onRegister }: { onRegister?: () => void }) => {
                   ))}
                   <button
                     onClick={onRegister}
-                    className="bg-ted-red text-white px-6 py-2 rounded-full text-sm font-bold hover:bg-white hover:text-ted-red transition-all duration-300 uppercase tracking-widest"
+                    className="cursor-pointer bg-ted-red text-white px-6 py-2 rounded-full text-sm font-bold hover:bg-white hover:text-ted-red transition-all duration-300 uppercase tracking-widest"
                   >
                     Register
                   </button>
@@ -183,7 +183,7 @@ export const Navbar = ({ onRegister }: { onRegister?: () => void }) => {
                   ))}
                   <button
                     onClick={onRegister}
-                    className="ml-2 bg-ted-red text-white px-5 py-2 rounded-full text-sm font-bold hover:opacity-90 transition-opacity uppercase tracking-widest"
+                    className="cursor-pointer ml-2 bg-ted-red text-white px-5 py-2 rounded-full text-sm font-bold hover:opacity-90 transition-opacity uppercase tracking-widest"
                   >
                     Register
                   </button>

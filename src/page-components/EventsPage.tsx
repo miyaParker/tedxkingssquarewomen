@@ -94,9 +94,18 @@ const TicketCard = ({ onRegister }: { onRegister: () => void }) => (
         </div>
         <button
           onClick={onRegister}
-          className="inline-flex cursor-pointer items-center gap-3 bg-white text-obsidian font-black uppercase tracking-widest px-8 py-4 rounded-full hover:bg-ted-red hover:text-white transition-all duration-300 text-sm group"
+          className="hidden lg:inline-flex cursor-pointer items-center gap-3 bg-white text-obsidian font-black uppercase tracking-widest px-8 py-4 rounded-full hover:bg-ted-red hover:text-white transition-all duration-300 text-sm group"
         >
           Register Your Interest
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" className="group-hover:translate-x-1 transition-transform">
+            <path d="M5 12h14M12 5l7 7-7 7" />
+          </svg>
+        </button>
+        <button
+          onClick={onRegister}
+          className="lg:hidden inline-flex cursor-pointer items-center gap-3 bg-white text-obsidian font-black uppercase tracking-widest px-8 py-4 rounded-full hover:bg-ted-red hover:text-white transition-all duration-300 text-sm group"
+        >
+          Register
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" className="group-hover:translate-x-1 transition-transform">
             <path d="M5 12h14M12 5l7 7-7 7" />
           </svg>
@@ -104,9 +113,9 @@ const TicketCard = ({ onRegister }: { onRegister: () => void }) => (
       </div>
 
       {/* Right: image with centered dashed left border */}
-      <div className="relative h-60 md:h-auto overflow-hidden" style={{ borderLeft: '2px dashed rgba(255,255,255,0.2)' }}>
+      <div className="relative h-60 md:h-auto overflow-hidden border-t-2 border-dashed border-white/20 lg:border-t-none" style={{ borderLeft: '2px dashed rgba(255,255,255,0.2)' }}>
         <img
-          src="../public/events.jpg"
+          src="/events.jpg"
           alt="Event"
           className="w-full h-full object-cover"
           referrerPolicy="no-referrer"
@@ -120,6 +129,7 @@ const TicketCard = ({ onRegister }: { onRegister: () => void }) => (
 export const EventsPage = () => {
   const heroRef = useRef<HTMLDivElement>(null);
   const titleRef = useRef<HTMLDivElement>(null);
+  const unscriptedRef = useRef<HTMLHeadingElement>(null);
   const bannerRef = useRef<HTMLDivElement>(null);
   const preEventRef = useRef<HTMLDivElement>(null);
   const ticketRef = useRef<HTMLDivElement>(null);
@@ -153,6 +163,21 @@ export const EventsPage = () => {
           opacity: 1, y: 0, duration: 0.9, ease: 'power3.out',
           scrollTrigger: { trigger: ticketRef.current, start: 'top 80%', once: true },
         });
+      }
+      if (unscriptedRef.current && heroRef.current) {
+        gsap.fromTo(unscriptedRef.current,
+          { x: '0%' },
+          {
+            x: '-25%',
+            ease: 'none',
+            scrollTrigger: {
+              trigger: heroRef.current,
+              start: 'top top',
+              end: 'bottom top',
+              scrub: 1,
+            },
+          }
+        );
       }
       if (galleryRef.current) {
         const imgs = galleryRef.current.querySelectorAll('.gallery-img');
@@ -189,7 +214,7 @@ export const EventsPage = () => {
 
         {/* Big title */}
         <div ref={titleRef} className="relative z-10 px-6 md:px-12 pb-0 overflow-hidden">
-          <h1 className="text-[18vw] font-black uppercase tracking-tighter leading-none text-white select-none flex">
+          <h1 ref={unscriptedRef} className="text-[18vw] font-black uppercase tracking-tighter leading-none text-white select-none flex">
             {'UNSCRIPTED'.split('').map((char, i) => (
               <span key={i} className="events-letter inline-block">{char}</span>
             ))}
@@ -200,19 +225,21 @@ export const EventsPage = () => {
         <div ref={bannerRef} className="relative z-10 bg-ted-red px-6 md:px-12 py-8 flex flex-col md:flex-row md:items-center md:justify-between gap-6">
           <div>
             <p className="text-[10px] font-bold uppercase tracking-[0.4em] text-white/60 mb-1">The Official Event</p>
-            <h2 className="text-2xl md:text-4xl font-black uppercase tracking-tighter text-white leading-none">
+            <h2 className="text-xl md:text-4xl font-black uppercase tracking-tighter text-white leading-none">
               TEDxKings Square Women 2026
             </h2>
           </div>
-          <div className="flex items-center gap-6">
-            <div className="text-white/70">
-              <p className="font-bold text-white uppercase tracking-widest text-xs mb-1">When</p>
-              <p className="text-lg font-semibold">August 29, 2026 · 11:00 AM</p>
-            </div>
-            <div className="w-px h-10 bg-white/20" />
-            <div className="text-white/70">
-              <p className="font-bold text-white uppercase tracking-widest text-xs mb-1">Where</p>
-              <p className="text-lg font-semibold">Benin City, Edo State</p>
+          <div className="flex flex-col md:flex-row md:items-center gap-4 md:gap-6">
+            <div className="flex items-center gap-6">
+              <div className="text-white/70">
+                <p className="font-bold text-white uppercase tracking-widest text-[10px] mb-1">When</p>
+                <p className="text-sm md:text-lg font-semibold">August 29, 2026 · 11:00 AM</p>
+              </div>
+              <div className="w-px h-10 bg-white/20" />
+              <div className="text-white/70">
+                <p className="font-bold text-white uppercase tracking-widest text-[10px] mb-1">Where</p>
+                <p className="text-sm md:text-lg font-semibold">Benin City, Edo State</p>
+              </div>
             </div>
             <Badge />
           </div>
@@ -342,7 +369,16 @@ export const EventsPage = () => {
         </h3>
         <button
           onClick={() => setShowModal(true)}
-          className="group bg-white text-ted-red px-12 py-6 rounded-full text-lg font-black uppercase tracking-widest hover:bg-obsidian hover:text-white transition-all duration-500 shadow-2xl inline-flex items-center gap-4"
+          className="inline-flex lg:hidden group bg-white text-ted-red px-12 py-6 rounded-full text-lg font-black uppercase tracking-widest hover:bg-obsidian hover:text-white transition-all duration-500 shadow-2xl items-center gap-4"
+        >
+          Register 
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" className="group-hover:translate-x-1 transition-transform">
+            <path d="M5 12h14M12 5l7 7-7 7" />
+          </svg>
+        </button>
+         <button
+          onClick={() => setShowModal(true)}
+          className="hidden lg:inline-flex group bg-white text-ted-red px-12 py-6 rounded-full text-lg font-black uppercase tracking-widest hover:bg-obsidian hover:text-white transition-all duration-500 shadow-2xl items-center gap-4"
         >
           Register Your Interest
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" className="group-hover:translate-x-1 transition-transform">

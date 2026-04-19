@@ -180,7 +180,7 @@ export const SupportPage = () => {
     setOpenIndex(null);
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = (e: React.SyntheticEvent<HTMLFormElement>) => {
     e.preventDefault();
     setSent(true);
   };
@@ -277,7 +277,7 @@ export const SupportPage = () => {
       </section>
 
       {/* Contact form */}
-      <section className="py-48 px-6 md:px-12 border-t border-white/10">
+      <section className="py-24 px-4 md:px-8 bg-ted-red">
         <div className="max-w-3xl mx-auto">
 
           <motion.div
@@ -287,11 +287,11 @@ export const SupportPage = () => {
             transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
             className="text-center mb-16"
           >
-            <h2 className="text-sm font-bold text-ted-red uppercase tracking-[0.5em] mb-4">Still need help?</h2>
+            <h2 className="text-sm font-bold text-white/60 uppercase tracking-[0.5em] mb-4">Still need help?</h2>
             <h3 className="text-5xl md:text-6xl font-black tracking-tighter uppercase leading-none mb-4">
-              Send us a <span className="text-mask">Message</span>
+              Send us a <span className="text-obsidian">Message</span>
             </h3>
-            <p className="text-white/40 font-light text-lg">
+            <p className="text-white/70 font-light text-lg">
               Our team will get back to you shortly.
             </p>
           </motion.div>
@@ -318,54 +318,51 @@ export const SupportPage = () => {
               </motion.div>
             ) : (
               <form onSubmit={handleSubmit} className="space-y-0">
-                <div className="border border-white/10 rounded-2xl overflow-hidden divide-y divide-white/10">
+                <div className="border border-white/40 rounded-2xl overflow-hidden divide-y divide-white/40">
                   <div className="flex items-center">
-                    <label className="text-[10px] font-bold uppercase tracking-widest text-white/30 w-28 px-6 flex-shrink-0">Name</label>
+                    <label className="text-[10px] font-bold uppercase tracking-widest text-white w-28 px-6 flex-shrink-0">Name</label>
                     <input
                       type="text"
                       placeholder="Your full name"
                       required
                       value={formData.name}
                       onChange={e => setFormData({ ...formData, name: e.target.value })}
-                      className="flex-grow bg-transparent px-4 py-5 text-sm focus:outline-none placeholder:text-white/20"
+                      className="flex-grow bg-transparent px-4 py-5 text-sm text-white focus:outline-none placeholder:text-white/50"
                     />
                   </div>
                   <div className="flex items-center">
-                    <label className="text-[10px] font-bold uppercase tracking-widest text-white/30 w-28 px-6 flex-shrink-0">Email</label>
+                    <label className="text-[10px] font-bold uppercase tracking-widest text-white w-28 px-6 flex-shrink-0">Email</label>
                     <input
                       type="email"
                       placeholder="yourname@email.com"
                       required
                       value={formData.email}
                       onChange={e => setFormData({ ...formData, email: e.target.value })}
-                      className="flex-grow bg-transparent px-4 py-5 text-sm focus:outline-none placeholder:text-white/20"
+                      className="flex-grow bg-transparent px-4 py-5 text-sm text-white focus:outline-none placeholder:text-white/50"
                     />
                   </div>
                   <div className="flex items-start">
-                    <label className="text-[10px] font-bold uppercase tracking-widest text-white/30 w-28 px-6 pt-5 flex-shrink-0">Message</label>
+                    <label className="text-[10px] font-bold uppercase tracking-widest text-white w-28 px-6 pt-5 flex-shrink-0">Message</label>
                     <textarea
                       placeholder="How can we help you?"
                       required
                       rows={6}
                       value={formData.message}
                       onChange={e => setFormData({ ...formData, message: e.target.value })}
-                      className="flex-grow bg-transparent px-4 py-5 text-sm focus:outline-none placeholder:text-white/20 resize-none"
+                      className="flex-grow bg-transparent px-4 py-5 text-sm text-white focus:outline-none placeholder:text-white/50 resize-none"
                     />
                   </div>
                 </div>
-                <div className="flex items-center justify-between pt-6">
-                  <a href="mailto:tedxkingssquarewomen@gmail.com" className="text-xs text-white/30 hover:text-white transition-colors underline">
-                    tedxkingssquarewomen@gmail.com
-                  </a>
-                    <button
-                      type="submit"
-                      className="bg-ted-red text-white font-black uppercase tracking-widest px-8 py-4 rounded-full hover:opacity-90 transition-opacity text-sm flex items-center gap-3"
-                    >
-                      Send Message
-                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3">
-                        <path d="M7 17L17 7M17 7H7M17 7V17" />
-                      </svg>
-                    </button>
+                <div className="flex justify-center pt-6">
+                  <button
+                    type="submit"
+                    className="cursor-pointer bg-obsidian text-white font-black uppercase tracking-widest px-8 py-4 rounded-full hover:bg-white hover:text-ted-red transition-all duration-300 text-sm flex items-center gap-3"
+                  >
+                    Send Message
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3">
+                      <path d="M7 17L17 7M17 7H7M17 7V17" />
+                    </svg>
+                  </button>
                 </div>
               </form>
             )}

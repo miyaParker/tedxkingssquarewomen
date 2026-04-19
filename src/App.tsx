@@ -3,6 +3,7 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
+import { useState } from 'react';
 import { Routes, Route, useLocation } from 'react-router-dom';
 import { AnimatePresence } from 'motion/react';
 import { Navbar } from './components/Navbar';
@@ -12,26 +13,33 @@ import { Schedule, Partners } from './components/Schedule';
 import { CTA } from './components/CTA';
 import { About, Footer } from './components/Footer';
 import { SmoothScroll } from './components/SmoothScroll';
+import { RegisterModal } from './components/RegisterModal';
 import { AboutPage } from './pages/AboutPage';
 import { SupportPage } from './pages/SupportPage';
 import { EventsPage } from './pages/EventsPage';
 
-const Home = () => (
-  <SmoothScroll>
-    <div className="relative min-h-screen bg-obsidian selection:bg-ted-red selection:text-white">
-      <Navbar />
-      <main>
-        <Hero />
-        <SpeakerGrid />
-        <Schedule />
-        <About />
-        <Partners />
-        <CTA />
-      </main>
-      <Footer />
-    </div>
-  </SmoothScroll>
-);
+const Home = () => {
+  const [showModal, setShowModal] = useState(false);
+  return (
+    <SmoothScroll>
+      <div className="relative min-h-screen bg-obsidian selection:bg-ted-red selection:text-white">
+        <Navbar onRegister={() => setShowModal(true)} />
+        <main>
+          <Hero />
+          <SpeakerGrid />
+          <Schedule />
+          <About />
+          <Partners />
+          <CTA />
+        </main>
+        <Footer />
+        <AnimatePresence>
+          {showModal && <RegisterModal onClose={() => setShowModal(false)} />}
+        </AnimatePresence>
+      </div>
+    </SmoothScroll>
+  );
+};
 
 export default function App() {
   const location = useLocation();

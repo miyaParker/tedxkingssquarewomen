@@ -139,32 +139,34 @@ export const Footer = () => {
 
         <div className="max-w-7xl mx-auto relative z-10">
           {/* Top Social Links */}
-          <div className="grid grid-cols-2 md:grid-cols-4 border-b border-white/10 mb-20">
-            {[
-              { name: 'Instagram', url: 'https://www.instagram.com/tedxkingssquarewomen?igsh=dmhpYnkwM3NhZ2dh&utm_source=qr' },
-              { name: 'WhatsApp', url: 'https://chat.whatsapp.com/BpjkeQJOVHK7D3zacrlVGw' },
-              { name: 'X', url: 'https://x.com/tedxkingssquare?s=21&t=YAcBV-XQa2PxoOXOOZomJw' },
-            ].map((social) => (
-              <a
-                key={social.name}
-                href={social.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="group flex justify-between items-center p-8 border-r last:border-r-0 border-white/10 hover:bg-white/5 transition-colors"
-              >
-                <span className="text-2xl md:text-3xl font-black uppercase tracking-tighter">{social.name}</span>
-                <svg
-                  width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3"
-                  className="group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform"
+          <div className="border-b border-white/10 mb-20">
+            <div className="flex flex-col md:grid md:grid-cols-4">
+              {[
+                { name: 'Instagram', url: 'https://www.instagram.com/tedxkingssquarewomen?igsh=dmhpYnkwM3NhZ2dh&utm_source=qr' },
+                { name: 'WhatsApp', url: 'https://chat.whatsapp.com/BpjkeQJOVHK7D3zacrlVGw' },
+                { name: 'X', url: 'https://x.com/tedxkingssquare?s=21&t=YAcBV-XQa2PxoOXOOZomJw' },
+              ].map((social) => (
+                <a
+                  key={social.name}
+                  href={social.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group flex justify-between items-center px-0 py-5 md:p-8 border-b md:border-b-0 md:border-r border-white/10 hover:bg-white/5 md:hover:bg-white/5 transition-colors"
                 >
-                  <path d="M7 17L17 7M17 7H7M17 7V17" />
-                </svg>
-              </a>
-            ))}
-            <div className="flex flex-col justify-center p-8 border-white/10">
-              <p className="text-white/40 text-sm font-light leading-relaxed">
-                Join the conversation. Follow us for updates, behind-the-scenes, and ideas worth spreading.
-              </p>
+                  <span className="text-xl md:text-3xl font-black uppercase tracking-tighter">{social.name}</span>
+                  <svg
+                    width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3"
+                    className="group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform flex-shrink-0"
+                  >
+                    <path d="M7 17L17 7M17 7H7M17 7V17" />
+                  </svg>
+                </a>
+              ))}
+              <div className="hidden md:flex flex-col justify-center p-8">
+                <p className="text-white/40 text-sm font-light leading-relaxed">
+                  Join the conversation. Follow us for updates, behind-the-scenes, and ideas worth spreading.
+                </p>
+              </div>
             </div>
           </div>
 

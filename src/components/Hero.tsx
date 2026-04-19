@@ -38,7 +38,8 @@ export const Hero = () => {
     });
 
     // Phase 1: text scales up, video shows through letters
-    tl.to(textRef.current, { scale: 50, duration: 1, ease: 'power2.inOut' }, 0);
+    const zoomScale = window.innerWidth < 768 ? 180 : 50;
+    tl.to(textRef.current, { scale: zoomScale, duration: 1, ease: 'power2.inOut' }, 0);
 
     // Blur the video as soon as text fills the screen (no mask fade — fading exposes black bg)
     tl.fromTo(videoElementRef.current,
@@ -131,6 +132,10 @@ export const Hero = () => {
                 View Schedule
               </a>
             </div>
+            <div className="flex flex-col items-center gap-2 mt-6">
+              <span className="text-[10px] uppercase tracking-[0.3em] text-white/40">Scroll to Explore</span>
+              <div className="w-px h-10 bg-gradient-to-b from-ted-red to-transparent" />
+            </div>
           </div>
 
           {/* Right: description */}
@@ -144,11 +149,6 @@ export const Hero = () => {
         {showModal && <RegisterModal onClose={() => setShowModal(false)} />}
       </AnimatePresence>
 
-      {/* Scroll indicator */}
-      <div className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 z-40">
-        <span className="text-[10px] uppercase tracking-[0.3em] text-white/40">Scroll to Explore</span>
-        <div className="w-px h-12 bg-gradient-to-b from-ted-red to-transparent" />
-      </div>
     </section>
   );
 };

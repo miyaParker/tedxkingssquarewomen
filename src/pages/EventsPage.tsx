@@ -172,7 +172,7 @@ export const EventsPage = () => {
       exit={{ x: '-100%', opacity: 0 }}
       transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
     >
-      <Navbar />
+      <Navbar onRegister={() => setShowModal(true)} />
 
       {/* Hero */}
       <div ref={heroRef} className="relative h-screen flex flex-col justify-end overflow-hidden bg-obsidian">

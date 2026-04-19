@@ -149,7 +149,7 @@ export const SpeakerGrid = () => {
           <div
             key={speaker.name}
             ref={el => { if (el) cardsRef.current[index] = el; }}
-            className="w-[75vw] md:w-[400px] h-[72vh] flex-shrink-0 mr-10 md:mr-20 rounded-3xl border border-white/15 bg-[#111] flex flex-col p-3 gap-0 group"
+            className="w-[85vw] md:w-[400px] h-[72vh] flex-shrink-0 mr-10 md:mr-20 rounded-3xl border border-white/15 bg-[#111] flex flex-col p-3 gap-0 group"
           >
             {/* Image with padding and rounded corners */}
             <div className="relative rounded-2xl overflow-hidden flex-1">
